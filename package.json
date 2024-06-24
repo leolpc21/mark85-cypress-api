@@ -4,7 +4,7 @@
   "description": "Projeto de testes de API do Mark85",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run",
+    "test": "npx cypress run & npx allure serve",
     "cy:open": "npx cypress open"
   },
   "keywords": [
