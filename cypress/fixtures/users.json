@@ -1,0 +1,30 @@
+{
+  "login": {
+    "name": "Leo Costa Login",
+    "email": "leologin@teste.com",
+    "password": "xperience"
+  },
+  "inv_pass": {
+    "email": "leo21@teste.com",
+    "password": "123456"
+  },
+  "email_404": {
+    "email": "naoexiste@teste.com",
+    "password": "123456"
+  },
+  "create": {
+    "name": "Leo Costa Create",
+    "email": "leocreate@teste.com",
+    "password": "xperience"
+  },
+  "dup_email": {
+    "name": "Leo Costa Dup Email",
+    "email": "leodupemail@teste.com",
+    "password": "xperience"
+  },
+  "required": {
+    "name": "Leo Costa Required",
+    "email": "leorequired@teste.com",
+    "password": "xperience"
+  }
+}

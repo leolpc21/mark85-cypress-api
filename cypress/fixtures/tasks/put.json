@@ -1,0 +1,26 @@
+{
+  "update": {
+    "user": {
+      "name": "Leo Costa Finish Task",
+      "email": "leofinishtask@teste.com",
+      "password": "pwd123"
+    },
+    "task": {
+      "name": "Concluir tarefa",
+      "tags": [
+        "QAX",
+        "QAzando"
+      ]
+    }
+  },
+  "not_found": {
+    "user": {
+      "name": "Leo Costa Finish Task Not Found",
+      "email": "leofinishtasknotfound@teste.com",
+      "password": "pwd123"
+    },
+    "task": {
+      "name": "Finalizar tarefa inexistente"
+    }
+  }
+}

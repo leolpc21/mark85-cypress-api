@@ -1,0 +1,28 @@
+{
+  "create": {
+    "user": {
+      "name": "Leo Costa Create Task",
+      "email": "leocreatetask@teste.com",
+      "password": "pwd123"
+    },
+    "task": {
+      "name": "Cartão",
+      "tags": [
+        "Nubank"
+      ]
+    }
+  },
+  "dup": {
+    "user": {
+      "name": "Leo Costa Dup",
+      "email": "leotaskdup@teste.com",
+      "password": "pwd123"
+    },
+    "task": {
+      "name": "Cartão",
+      "tags": [
+        "Nubank"
+      ]
+    }
+  }
+}

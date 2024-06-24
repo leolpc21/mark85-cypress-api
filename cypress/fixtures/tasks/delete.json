@@ -1,0 +1,27 @@
+{
+  "remove": {
+    "user": {
+      "name": "Leo Costa Task Remove",
+      "email": "leotaskremove@teste.com",
+      "password": "pwd123"
+    },
+    "task": {
+      "name": "Deletar task",
+      "tags": [
+        "QAX",
+        "QAzando",
+        "API"
+      ]
+    }
+  },
+  "not_found": {
+    "user": {
+      "name": "Leo Costa Delete Task Not Found",
+      "email": "leodeletetasknotfound@teste.com",
+      "password": "pwd123"
+    },
+    "task": {
+      "name": "Deletar tarefa inexistente"
+    }
+  }
+}
