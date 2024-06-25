@@ -31,6 +31,12 @@ jobs:
     steps:
       - name: Passo 1 - Obter cópia do código-fonte do repositório
         uses: actions/checkout@v3.3.0
+        env:
+          BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          MONGO_URI: ${{ secrets.CYPRESS_MONGO_URI }}
+          AMQP_HOST: ${{ secrets.CYPRESS_AMQP_HOST }}
+          AMQP_QUEUE: ${{ secrets.CYPRESS_AMQP_QUEUE }}
+          AMQP_TOKEN: ${{ secrets.CYPRESS_AMQP_TOKEN }}
 
       - name: Passo 2 - Instalar dependências Mark 85 (apps > api)
         run: |
@@ -51,7 +57,7 @@ jobs:
           yarn --cwd ./apps/web dev &
 
           # aguardar até que Mark 85 (apps > web) esteja pronto para acessar
-          while ! curl -sSf http://localhost:8080 > /dev/null; do sleep 1; done
+          while ! curl -sSf http://localhost:3333 > /dev/null; do sleep 1; done
 
           # instalar dependências cypress
           yarn --cwd ../.. install
