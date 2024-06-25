@@ -31,12 +31,15 @@ jobs:
     steps:
       - name: Passo 1 - Obter cópia do código-fonte do repositório
         uses: actions/checkout@v3.3.0
-        env:
-          BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
-          MONGO_URI: ${{ secrets.CYPRESS_MONGO_URI }}
-          AMQP_HOST: ${{ secrets.CYPRESS_AMQP_HOST }}
-          AMQP_QUEUE: ${{ secrets.CYPRESS_AMQP_QUEUE }}
-          AMQP_TOKEN: ${{ secrets.CYPRESS_AMQP_TOKEN }}
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo BASE_URL = ${{ secrets.CYPRESS_BASE_URL }} >> .env
+          echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
+          echo AMQP_HOST = ${{ secrets.CYPRESS_AMQP_HOST }} >> .env
+          echo AMQP_QUEUE = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
+          echo AMQP_TOKEN = ${{ secrets.CYPRESS_AMQP_TOKEN }} >> .env
 
       - name: Passo 2 - Instalar dependências Mark 85 (apps > api)
         run: |
