@@ -41,6 +41,14 @@ jobs:
           echo AMQP_QUEUE = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
           echo AMQP_TOKEN = ${{ secrets.CYPRESS_AMQP_TOKEN }} >> .env
 
+      - name: Verificar se MONGO_URI foi inserido no .env
+        run: |
+          if grep -q "MONGO_URI" .env; then
+            echo "MONGO_URI está presente no arquivo .env"
+          else
+            echo "MONGO_URI não foi inserido no arquivo .env"
+          fi
+
       - name: Passo 2 - Instalar dependências Mark 85 (apps > api)
         run: |
           yarn --cwd ./apps/mark85/api install && yarn --cwd ./apps/mark85/api check && npm --cwd ./apps/mark85/api run dev
