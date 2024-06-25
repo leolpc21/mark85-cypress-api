@@ -44,7 +44,7 @@ jobs:
 
           # verificar se as dependências Mark 85 estão instaladas
           # executar Mark 85 em 2º plano em um ambiente de desenvolvimento local
-          yarn check && npm run dev
+          yarn --cwd ./apps/api check && npm --cwd ./apps/api run dev
 
       - name: Passo 3 - Instalar dependências Mark 85 (apps > web)
         run: |
