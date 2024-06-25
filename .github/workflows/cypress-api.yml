@@ -42,23 +42,27 @@ jobs:
         run: |
           yarn --cwd ./apps/api install
 
+          # verificar se as dependências Mark 85 estão instaladas
+          yarn --cwd ./apps/api check
+
+          # executar Mark 85 em 2º plano em um ambiente de desenvolvimento local
+          npm --cwd ./apps/api run dev
+
       - name: Passo 3 - Instalar dependências Mark 85 (apps > web)
         run: |
           yarn --cwd ./apps/web install
 
-      - name: Passo 4 - Executar Mark 85 (apps > api e apps > web) em 2º plano em um ambiente de desenvolvimento local, Executar testes em modo headless e Gerar os resultados dos testes
-        run: |
-          # verificar se as dependências Mark 85 (apps > api e apps > web) estão instaladas
-          yarn --cwd ./apps/api check
+          # verificar se as dependências Mark 85 estão instaladas
           yarn --cwd ./apps/web check
 
-          # executar Mark 85 (apps > api e apps > web) em 2º plano em um ambiente de desenvolvimento local
-          yarn --cwd ./apps/api dev &
-          yarn --cwd ./apps/web dev &
+          # executar Mark 85 em 2º plano em um ambiente de desenvolvimento local
+          npm --cwd ./apps/web run dev
 
           # aguardar até que Mark 85 (apps > web) esteja pronto para acessar
           while ! curl -sSf http://localhost:3333 > /dev/null; do sleep 1; done
 
+      - name: Passo 4 - Executar testes em modo headless e Gerar os resultados dos testes
+        run: |
           # instalar dependências cypress
           yarn --cwd ../.. install
 
