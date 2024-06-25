@@ -32,6 +32,11 @@ jobs:
       - name: Passo 1 - Obter cópia do código-fonte do repositório
         uses: actions/checkout@v3.3.0
 
+      - name: Debug secrets
+        run: |
+          echo "CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}"
+          echo "CYPRESS_MONGO_URI: ${{ secrets.CYPRESS_MONGO_URI }}"
+
       - name: Create .env file
         run: |
           touch .env
@@ -41,13 +46,8 @@ jobs:
           echo AMQP_QUEUE = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
           echo AMQP_TOKEN = ${{ secrets.CYPRESS_AMQP_TOKEN }} >> .env
 
-      - name: Verificar se MONGO_URI foi inserido no .env
-        run: |
-          if grep -q "MONGO_URI" .env; then
-            echo "MONGO_URI está presente no arquivo .env"
-          else
-            echo "MONGO_URI não foi inserido no arquivo .env"
-          fi
+      - name: Exibir conteúdo do .env
+        run: cat .env
 
       - name: Passo 2 - Instalar dependências Mark 85 (apps > api)
         run: |
