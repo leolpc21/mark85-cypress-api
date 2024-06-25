@@ -53,7 +53,7 @@ jobs:
           # executar Mark 85 em 2º plano em um ambiente de desenvolvimento local
 
           # aguardar até que Mark 85 (apps > web) esteja pronto para acessar
-          //while ! curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done
+          # while ! curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done
 
       - name: Passo 4 - Executar testes em modo headless e Gerar os resultados dos testes
         run: |
