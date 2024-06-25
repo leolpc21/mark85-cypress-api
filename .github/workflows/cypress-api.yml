@@ -32,11 +32,6 @@ jobs:
       - name: Passo 1 - Obter cópia do código-fonte do repositório
         uses: actions/checkout@v3.3.0
 
-      - name: Debug secrets
-        run: |
-          echo "CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}"
-          echo "CYPRESS_MONGO_URI: ${{ secrets.CYPRESS_MONGO_URI }}"
-
       - name: Create .env file
         run: |
           touch .env
@@ -51,10 +46,14 @@ jobs:
 
       - name: Passo 2 - Instalar dependências Mark 85 (apps > api)
         run: |
-          yarn --cwd ./apps/mark85/api install && yarn --cwd ./apps/mark85/api check && npm --cwd ./apps/mark85/api run dev
+          yarn --cwd ./apps/mark85/api install && 
+          yarn --cwd ./apps/mark85/api check
 
           # verificar se as dependências Mark 85 estão instaladas
-          # executar Mark 85 em 2º plano em um ambiente de desenvolvimento local
+
+      - name: executar Mark 85 em 2º plano em um ambiente de desenvolvimento local
+        run: |
+          npm --cwd ./apps/mark85/api run dev
 
       - name: Passo 3 - Instalar dependências Mark 85 (apps > web)
         run: |
