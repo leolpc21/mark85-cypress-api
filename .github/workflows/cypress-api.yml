@@ -61,7 +61,7 @@ jobs:
           yarn --cwd ../.. install
 
           # executar os testes em modo headless e gerar os resultados dos testes
-          yarn cypress run --spec '${{ github.event.inputs.spec }}' --browser chrome --headless
+          yarn cypress run --browser chrome --headless
 
       - name: Passo 5 - Armazenar os resultados dos testes em vídeos
         uses: actions/upload-artifact@v3
