@@ -40,7 +40,7 @@ jobs:
 
       - name: Passo 2 - Instalar dependências Mark 85 (apps > api)
         run: |
-          yarn --cwd ./apps/api install &&
+          yarn --cwd ./apps/api install
 
           # verificar se as dependências Mark 85 estão instaladas
           yarn --cwd ./apps/api check &&
@@ -50,7 +50,7 @@ jobs:
 
       - name: Passo 3 - Instalar dependências Mark 85 (apps > web)
         run: |
-          yarn --cwd ./apps/web install &&
+          yarn --cwd ./apps/web install
 
           # verificar se as dependências Mark 85 estão instaladas
           yarn --cwd ./apps/web check &&
@@ -64,7 +64,7 @@ jobs:
       - name: Passo 4 - Executar testes em modo headless e Gerar os resultados dos testes
         run: |
           # instalar dependências cypress
-          yarn --cwd ../.. install &&
+          yarn --cwd ../.. install
 
           # executar os testes em modo headless e gerar os resultados dos testes
           yarn cypress run --spec '${{ github.event.inputs.spec }}' --browser chrome --headless
