@@ -46,7 +46,7 @@ jobs:
 
       - name: Passo 5 - executar Mark 85 (apps > api) em 2º plano em um ambiente de desenvolvimento local
         run: |
-          touch --cwd ./apps/mark85/api .env
+          touch .env
           echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
           echo QUEUE_NAME = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
           echo AMQP_URL = ${{ secrets.CYPRESS_AMQP_URL }} >> .env
