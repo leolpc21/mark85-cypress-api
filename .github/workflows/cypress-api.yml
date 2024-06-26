@@ -42,7 +42,6 @@ jobs:
           echo AMQP_URL=${{ secrets.CYPRESS_AMQP_URL }} >> .env
 
           cat .env
-          printenv
 
       - name: Passo 3 - Instalar dependências Mark 85 (apps > web)
         run: |
