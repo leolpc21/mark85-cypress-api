@@ -32,20 +32,6 @@ jobs:
       - name: Passo 1 - Obter cópia do código-fonte do repositório
         uses: actions/checkout@v3.3.0
 
-      - name: Create .env file
-        run: |
-          touch .env
-          echo BASE_URL = ${{ secrets.CYPRESS_BASE_URL }} >> .env
-          echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
-          echo AMQP_HOST = ${{ secrets.CYPRESS_AMQP_HOST }} >> .env
-          echo AMQP_QUEUE = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
-          echo AMQP_TOKEN = ${{ secrets.CYPRESS_AMQP_TOKEN }} >> .env
-          echo QUEUE_NAME = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
-          echo AMQP_URL = ${{ secrets.CYPRESS_AMQP_URL }} >> .env
-
-      - name: Exibir conteúdo do .env
-        run: cat .env
-
       - name: Passo 2 - Instalar dependências Mark 85 (apps > api)
         run: |
           yarn --cwd ./apps/mark85/api install
@@ -60,6 +46,11 @@ jobs:
 
       - name: Passo 5 - executar Mark 85 (apps > api) em 2º plano em um ambiente de desenvolvimento local
         run: |
+          touch --cwd ./apps/mark85/api .env
+          echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
+          echo QUEUE_NAME = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
+          echo AMQP_URL = ${{ secrets.CYPRESS_AMQP_URL }} >> .env
+
           yarn --cwd ./apps/mark85/api dev
 
       - name: Passo 6 - executar Mark 85 (apps > web) em 2º plano em um ambiente de desenvolvimento local
@@ -71,6 +62,13 @@ jobs:
 
       - name: Passo 7 - Executar testes em modo headless e Gerar os resultados dos testes
         run: |
+          touch .env
+          echo BASE_URL = ${{ secrets.CYPRESS_BASE_URL }} >> .env
+          echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
+          echo AMQP_HOST = ${{ secrets.CYPRESS_AMQP_HOST }} >> .env
+          echo AMQP_QUEUE = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
+          echo AMQP_TOKEN = ${{ secrets.CYPRESS_AMQP_TOKEN }} >> .env
+
           # instalar dependências cypress
           yarn --cwd ../ install
 
