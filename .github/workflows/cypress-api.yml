@@ -36,6 +36,13 @@ jobs:
         run: |
           yarn --cwd ./apps/mark85/api install
 
+          touch .env
+          echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
+          echo QUEUE_NAME = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
+          echo AMQP_URL = ${{ secrets.CYPRESS_AMQP_URL }} >> .env
+
+          cat .env
+
       - name: Passo 3 - Instalar dependências Mark 85 (apps > web)
         run: |
           yarn --cwd ./apps/mark85/web install
@@ -46,11 +53,6 @@ jobs:
 
       - name: Passo 5 - executar Mark 85 (apps > api) em 2º plano em um ambiente de desenvolvimento local
         run: |
-          touch .env
-          echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
-          echo QUEUE_NAME = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
-          echo AMQP_URL = ${{ secrets.CYPRESS_AMQP_URL }} >> .env
-
           yarn --cwd ./apps/mark85/api dev
 
       - name: Passo 6 - executar Mark 85 (apps > web) em 2º plano em um ambiente de desenvolvimento local
@@ -62,15 +64,15 @@ jobs:
 
       - name: Passo 7 - Executar testes em modo headless e Gerar os resultados dos testes
         run: |
+          # instalar dependências cypress
+          yarn --cwd ../.. install
+
           touch .env
           echo BASE_URL = ${{ secrets.CYPRESS_BASE_URL }} >> .env
           echo MONGO_URI = ${{ secrets.CYPRESS_MONGO_URI }} >> .env
           echo AMQP_HOST = ${{ secrets.CYPRESS_AMQP_HOST }} >> .env
           echo AMQP_QUEUE = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
           echo AMQP_TOKEN = ${{ secrets.CYPRESS_AMQP_TOKEN }} >> .env
-
-          # instalar dependências cypress
-          yarn --cwd ../ install
 
           # executar os testes em modo headless e gerar os resultados dos testes
           yarn cypress run --browser chrome --headless
