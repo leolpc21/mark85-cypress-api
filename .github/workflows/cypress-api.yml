@@ -40,6 +40,8 @@ jobs:
           echo AMQP_HOST = ${{ secrets.CYPRESS_AMQP_HOST }} >> .env
           echo AMQP_QUEUE = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
           echo AMQP_TOKEN = ${{ secrets.CYPRESS_AMQP_TOKEN }} >> .env
+          echo QUEUE_NAME = ${{ secrets.CYPRESS_AMQP_QUEUE }} >> .env
+          echo AMQP_URL = ${{ secrets.CYPRESS_AMQP_URL }} >> .env
 
       - name: Exibir conteúdo do .env
         run: cat .env
@@ -52,10 +54,9 @@ jobs:
         run: |
           yarn --cwd ./apps/mark85/web install
 
-      - name: Passo 4 - verificar se as dependências Mark L (apps > api e apps > web) estão instaladas
+      - name: Passo 4 - verificar se as dependências Mark 85 (apps > api e apps > web) estão instaladas
         run: |
-          yarn --cwd ./apps/mark85/api check &&
-          yarn --cwd ./apps/mark85/web check
+          yarn --cwd ./apps/mark85/api check && yarn --cwd ./apps/mark85/web check
 
       - name: Passo 5 - executar Mark 85 (apps > api) em 2º plano em um ambiente de desenvolvimento local
         run: |
